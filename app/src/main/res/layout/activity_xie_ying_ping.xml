@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#141931"
+    android:orientation="vertical"
+    tools:context=".view.activity.XieYingPingActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_36"
+            android:layout_alignTop="@id/movie_xie_yp_back"
+            android:gravity="center"
+            android:text="写评论"
+            android:textColor="#d8d8d8"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/movie_xie_yp_back"
+            android:layout_width="@dimen/dp_36"
+            android:layout_height="@dimen/dp_36"
+            android:layout_marginLeft="@dimen/dp_28"
+            android:layout_marginTop="@dimen/dp_40"
+            android:padding="@dimen/dp_10"
+            android:src="@drawable/back" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/movie_xie_yp_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_38"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="#1c2243"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dp_20"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_14"
+        android:textStyle="bold" />
+
+    <RatingBar
+        android:id="@+id/movie_xie_yp_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_14"
+        android:isIndicator="false"
+        android:max="5"
+        android:numStars="5"
+        android:progressBackgroundTint="@android:color/white"
+        android:progressTint="@android:color/holo_red_light"
+        android:rating="1.5"
+        android:stepSize="0.5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_30"
+        android:text="写点评论吧"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_12" />
+
+    <EditText
+        android:id="@+id/movie_xie_yp_edit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_200"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_24"
+        android:background="#1c2243"
+        android:gravity="top"
+        android:padding="@dimen/dp_5"
+        android:textColor="@android:color/white" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/movie_xie_yp_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/dp_24"
+            android:layout_marginRight="@dimen/dp_24"
+            android:layout_marginBottom="@dimen/dp_60"
+            android:background="@drawable/xpl_shape"
+            android:text="提交"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</LinearLayout>

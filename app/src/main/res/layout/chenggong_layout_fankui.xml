@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#141931"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_36"
+        android:layout_marginRight="@dimen/dp_21">
+
+        <ImageView
+            android:id="@+id/fkimg"
+            android:layout_width="@dimen/dp_36"
+            android:layout_height="@dimen/dp_36"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/dp_10"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="意见反馈"
+            android:textColor="#d8d8d8"
+            android:textSize="@dimen/sp_16" />
+
+    </RelativeLayout>
+    
+    <ImageView
+        android:src="@drawable/tijiaochenggong"
+        android:layout_marginTop="@dimen/dp_140"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="@dimen/dp_70" />
+
+    <TextView
+        android:text="提交成功"
+        android:textSize="@dimen/sp_16"
+        android:textColor="#fff"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="感谢您对维度影院的关注与支持，我们会认真处理您问题，尽快修复和完善相关功能"
+        android:textSize="@dimen/sp_12"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginRight="@dimen/dp_24"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
