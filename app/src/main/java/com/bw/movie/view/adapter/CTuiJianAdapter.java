@@ -1,5 +1,6 @@
 package com.bw.movie.view.adapter;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bw.movie.R;
 import com.bw.movie.model.bean.CTuiJianBean;
+import com.bw.movie.view.activity.YingYuanXiangQing;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +45,14 @@ public class CTuiJianAdapter extends RecyclerView.Adapter<CTuiJianAdapter.TuiJia
         tuiJianViewHoler.tuijianname.setText(list.get(i).name);
         Glide.with(tuiJianViewHoler.itemView.getContext()).load(list.get(i).logo)
                 .into(tuiJianViewHoler.tuijianimg);
-
+        tuiJianViewHoler.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(tuiJianViewHoler.itemView.getContext(),YingYuanXiangQing.class);
+                intent.putExtra("id",list.get(i).id+"");
+                tuiJianViewHoler.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

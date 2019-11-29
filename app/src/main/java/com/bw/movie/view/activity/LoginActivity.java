@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.movie.R;
+import com.bw.movie.app.XLApp;
 import com.bw.movie.constraint.Constraint;
 import com.bw.movie.dao.DaoMaster;
 import com.bw.movie.dao.DaoSession;
@@ -20,6 +21,7 @@ import com.bw.movie.jiami.EncryptUtil;
 import com.bw.movie.model.bean.User;
 import com.bw.movie.model.bean.XLLoginBean;
 import com.bw.movie.presenter.LoginPresenter;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -75,6 +77,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Const
                 }
                 break;
             case R.id.btn_wei:
+                getServerData();
                 break;
         }
     }
@@ -143,5 +146,20 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Const
             return false;
         }
         return true;
+    }
+
+    private void getServerData() {
+        if (!XLApp.mWxApi.isWXAppInstalled()) {
+            Toast.makeText(this, "您还未安装微信客户端", Toast.LENGTH_SHORT).show();
+            return;
+        }else {
+            // 发送授权登录信息，来获取code
+            final SendAuth.Req req = new SendAuth.Req();
+            // 应用的作用域，获取个人信息
+            req.scope = "snsapi_userinfo";
+            req.state = "app_wechat";
+            XLApp.mWxApi.sendReq(req);
+        }
+
     }
 }
