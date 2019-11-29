@@ -8,6 +8,8 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushConfig;
 import com.tencent.android.tpush.XGPushManager;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 /**
  * <p>文件描述：<p>
@@ -18,6 +20,7 @@ import com.tencent.android.tpush.XGPushManager;
 public class XLApp extends Application {
 
     public static Context sContext;
+    public static IWXAPI mWxApi;
 
     @Override
     public void onCreate() {
@@ -25,6 +28,7 @@ public class XLApp extends Application {
         sContext = this;
         Fresco.initialize(this);
         XGPushConfig.enableDebug(this,true);
+        registerToWX();
 
         XGPushConfig.enableOtherPush(getApplicationContext(), true);
         XGPushConfig.setHuaweiDebug(true);
@@ -43,6 +47,12 @@ public class XLApp extends Application {
 
         XGPushManager.bindAccount(getApplicationContext(), "XINGE");
         XGPushManager.setTag(this,"XINGE");
+    }
 
+    private void registerToWX() {
+        //第二个参数是指你应用在微信开放平台上的AppID
+        mWxApi = WXAPIFactory.createWXAPI(this, "wxb3852e6a6b7d9516", true);
+        // 将该app注册到微信
+        mWxApi.registerApp("wxb3852e6a6b7d9516");
     }
 }

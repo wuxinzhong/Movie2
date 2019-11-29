@@ -9,6 +9,7 @@ import com.bw.movie.model.bean.EmailBean;
 import com.bw.movie.model.bean.GuanZhuDianYingBean;
 import com.bw.movie.model.bean.GuanZhuYingYuanBean;
 import com.bw.movie.model.bean.HomeBanner;
+import com.bw.movie.model.bean.MovieTicketsBean;
 import com.bw.movie.model.bean.MovieXqBean;
 import com.bw.movie.model.bean.MovieXqYingpingBean;
 import com.bw.movie.model.bean.MovieYuYueBean;
@@ -16,6 +17,7 @@ import com.bw.movie.model.bean.MyYPPLBean;
 import com.bw.movie.model.bean.MyYYPLBean;
 import com.bw.movie.model.bean.PaiQiBean;
 import com.bw.movie.model.bean.PaiQiTimeBean;
+import com.bw.movie.model.bean.PayBean;
 import com.bw.movie.model.bean.PopularMovieBean;
 import com.bw.movie.model.bean.ReYingBean;
 import com.bw.movie.model.bean.RegisterBean;
@@ -254,5 +256,20 @@ public interface Constant {
                                          @Field("commentContent") String commentContent,
                                          @Field("score") String score);
 
+    //购票下单
+    @FormUrlEncoded
+    @POST("movieApi/movie/v2/verify/buyMovieTickets")
+    Observable<MovieTicketsBean> buyMovieTickets(@Header("userId") int userId,
+                                                 @Header("sessionId") String sessionId,
+                                                 @Field("scheduleId") int scheduleId,
+                                                 @Field("seat") String seat,
+                                                 @Field("sign") String sign);
 
+    //支付
+    @FormUrlEncoded
+    @POST("movieApi/movie/v2/verify/pay")
+    Observable<PayBean> pay(@Header("userId") int userId,
+                            @Header("sessionId") String sessionId,
+                            @Field("payType") int payType,
+                            @Field("orderId") String orderId);
 }

@@ -5,13 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     tools:context=".view.activity.SheZhiActivity">
-
-    <TextView
-        android:text="设置"
-        android:textSize="@dimen/sp_48"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>
