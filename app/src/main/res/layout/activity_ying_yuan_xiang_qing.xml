@@ -55,14 +55,13 @@
             android:textStyle="bold" />
 
         <CheckBox
-            android:button="@null"
             android:id="@+id/yyimg"
             android:layout_width="20dp"
             android:layout_height="18.8dp"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:background="@drawable/guanzhu_selector" />
+            android:background="@drawable/guanzhu_selector"
+            android:button="@null" />
 
     </RelativeLayout>
 
