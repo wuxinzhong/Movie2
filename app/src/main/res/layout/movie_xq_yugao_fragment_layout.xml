@@ -6,8 +6,21 @@
     android:orientation="vertical">
 
     <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
-        android:id="@+id/videoplayer"
+        android:id="@+id/videoplayer1"
         android:layout_width="match_parent"
-        android:layout_height="270dp" />
+        android:layout_height="@dimen/dp_130"
+        android:layout_marginTop="@dimen/dp_10" />
+
+    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+        android:id="@+id/videoplayer2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_130"
+        android:layout_marginTop="@dimen/dp_10" />
+
+    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+        android:id="@+id/videoplayer3"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_130"
+        android:layout_marginTop="@dimen/dp_10" />
 
 </LinearLayout>

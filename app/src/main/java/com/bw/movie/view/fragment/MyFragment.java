@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bw.movie.R;
@@ -73,6 +74,7 @@ public class MyFragment extends Fragment {
     private UserDao mUserDao;
     private String headPic;
     private String nickName;
+    private String mSessionId;
 
     @Nullable
     @Override
@@ -82,16 +84,24 @@ public class MyFragment extends Fragment {
         DaoSession daoSession = DaoMaster.newDevSession(getContext(), UserDao.TABLENAME);
         mUserDao = daoSession.getUserDao();
 
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
         List<User> users = mUserDao.loadAll();
         for (int i = 0; i < users.size(); i++) {
             headPic = users.get(i).getHeadPic();
             nickName = users.get(i).getNickName();
+            mSessionId = users.get(i).getSessionId();
         }
 
         Glide.with(getContext()).load(headPic).into(myHeadIc);
         mytextname.setText(nickName);
 
-        return view;
+
     }
 
     @Override
@@ -105,34 +115,61 @@ public class MyFragment extends Fragment {
         switch (view.getId()) {
             //消息
             case R.id.my_xinxi:
-                startActivity(new Intent(getContext(), MyXinxiActivity.class));
+                if (mSessionId != null)
+                    startActivity(new Intent(getContext(), MyXinxiActivity.class));
+                else
+                    Toast.makeText(getContext(), "请先登录", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.my_ziliao:
                 startActivity(new Intent(getContext(), ZiliaoActivity.class));
                 break;
             case R.id.my_dianyingpiao:
-                startActivity(new Intent(getContext(), DianYingPiaoActivity.class));
+                if (mSessionId != null)
+                    startActivity(new Intent(getContext(), DianYingPiaoActivity.class));
+                else
+                    Toast.makeText(getContext(), "请先登录", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.my_guanzhu:
-                startActivity(new Intent(getContext(), GuanZhuActivity.class));
+                if (mSessionId != null)
+                    startActivity(new Intent(getContext(), GuanZhuActivity.class));
+                else
+                    Toast.makeText(getContext(), "请先登录", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.my_movie:
-                startActivity(new Intent(getContext(), MovieActivity.class));
+                if (mSessionId != null)
+                    startActivity(new Intent(getContext(), MovieActivity.class));
+                else
+                    Toast.makeText(getContext(), "请先登录", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.my_shezhi:
-                startActivity(new Intent(getContext(), SheZhiActivity.class));
+                if (mSessionId != null)
+                    startActivity(new Intent(getContext(), SheZhiActivity.class));
+                else
+                    Toast.makeText(getContext(), "请先登录", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.my_yuyue:
-                startActivity(new Intent(getContext(), YuYueActivity.class));
+                if (mSessionId != null)
+                    startActivity(new Intent(getContext(), YuYueActivity.class));
+                else
+                    Toast.makeText(getContext(), "请先登录", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.my_pinglun:
-                startActivity(new Intent(getContext(), PingLunActivity.class));
+                if (mSessionId != null)
+                    startActivity(new Intent(getContext(), PingLunActivity.class));
+                else
+                    Toast.makeText(getContext(), "请先登录", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.my_goupiao:
-                startActivity(new Intent(getContext(), GouPiaoActivity.class));
+                if (mSessionId != null)
+                    startActivity(new Intent(getContext(), GouPiaoActivity.class));
+                else
+                    Toast.makeText(getContext(), "请先登录", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.my_fankui:
-                startActivity(new Intent(getContext(), FanKuiActivity.class));
+                if (mSessionId != null)
+                    startActivity(new Intent(getContext(), FanKuiActivity.class));
+                else
+                    Toast.makeText(getContext(), "请先登录", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

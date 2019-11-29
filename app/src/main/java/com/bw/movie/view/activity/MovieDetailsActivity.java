@@ -53,8 +53,6 @@ public class MovieDetailsActivity extends BaseActivity<MovieXQPresenter> impleme
     CheckBox movieDetailsCheckGuanzhu;
     @BindView(R.id.movie_details_text_guanzhu)
     TextView movieDetailsTextGuanzhu;
-    @BindView(R.id.movie_details_yin)
-    TextView movieDetailsYin;
     @BindView(R.id.movie_details_lin_shang)
     LinearLayout movieDetailsLinShang;
     @BindView(R.id.movie_details_tab)
@@ -123,9 +121,6 @@ public class MovieDetailsActivity extends BaseActivity<MovieXQPresenter> impleme
         switch (view.getId()) {
             case R.id.movie_details_back:
                 finish();
-                break;
-            case R.id.movie_details_yin:
-                movieDetailsLinShang.setVisibility(View.GONE);
                 break;
             case R.id.movie_details_xpl:
                 Intent intent=new Intent(this,XieYingPingActivity.class);

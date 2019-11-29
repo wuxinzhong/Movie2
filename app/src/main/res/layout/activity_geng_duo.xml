@@ -36,11 +36,13 @@
 
     </RelativeLayout>
 
-    <TableLayout
+    <android.support.design.widget.TabLayout
         android:id="@+id/gengduo_tab"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_38"
         android:layout_marginTop="@dimen/dp_10"
+        android:background="#1c2243"
+        app:tabTextColor="@android:color/white"
         android:gravity="center"
         android:orientation="horizontal" />
 

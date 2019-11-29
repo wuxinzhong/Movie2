@@ -87,6 +87,33 @@ public interface Constraint {
         void popularError(String s);
     }
 
+    //更多
+    interface IGengDuoRYView extends IBaseView{
+        //热映
+        void reyingSuccess(ReYingBean reYingBean);
+
+        void reyingError(String s);
+    }
+    //更多
+    interface IGengDuoSYView extends IBaseView{
+        //上映
+        void shangyingSuccess(ShangYingBean shangYingBean);
+
+        void shangyingError(String s);
+
+        //预约
+        void yuyueSuccess(MovieYuYueBean movieYuYueBean);
+
+        void yuyueError(String s);
+    }
+    //更多
+    interface IGengDuoRMView extends IBaseView{
+        //热门
+        void popularSuccess(PopularMovieBean popularMovieBean);
+
+        void popularError(String s);
+    }
+
     //电影详情
     interface IMovieXqView extends IBaseView {
         void movieXQSuccess(MovieXqBean movieXqBean);

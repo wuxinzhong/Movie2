@@ -23,9 +23,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.XieYingPingActivity"/>
-        <activity android:name=".view.activity.TiJiaoChengGong"/>
-        <activity android:name="com.bw.movie.view.activity.AllGouPiaoActivity"></activity>
+        <activity android:name=".view.activity.XuanYingYuanActivity"></activity>
+        <activity android:name=".view.activity.XieYingPingActivity" />
+        <activity android:name=".view.activity.TiJiaoChengGong" />
+        <activity android:name="com.bw.movie.view.activity.AllGouPiaoActivity" />
         <activity
             android:name=".view.activity.MovieDetailsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"

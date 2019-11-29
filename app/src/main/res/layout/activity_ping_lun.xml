@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#141931"
+    android:orientation="vertical"
     tools:context=".view.activity.PingLunActivity">
 
     <RelativeLayout
@@ -34,19 +34,19 @@
             android:textSize="@dimen/sp_16" />
 
     </RelativeLayout>
-    
+
     <android.support.design.widget.TabLayout
         android:id="@+id/mypltab"
-        android:background="#1c2243"
-        android:layout_marginTop="@dimen/dp_21"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_38">
-    </android.support.design.widget.TabLayout>
+        android:layout_height="@dimen/dp_38"
+        android:layout_marginTop="@dimen/dp_21"
+        android:background="#1c2243"
+        app:tabTextColor="@android:color/white" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/myplview"
-        android:layout_marginTop="@dimen/dp_20"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp_20" />
 
 </LinearLayout>

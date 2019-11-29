@@ -17,6 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class GuanZhuActivity extends AppCompatActivity {
 
@@ -26,7 +27,7 @@ public class GuanZhuActivity extends AppCompatActivity {
     TabLayout gztab;
     @BindView(R.id.gzview)
     ViewPager gzview;
-    List<Fragment> list=new ArrayList<>();
+    List<Fragment> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,5 +57,10 @@ public class GuanZhuActivity extends AppCompatActivity {
 
         gztab.getTabAt(0).setText("电影");
         gztab.getTabAt(1).setText("影院");
+    }
+
+    @OnClick(R.id.xximg)
+    public void onViewClicked() {
+        finish();
     }
 }

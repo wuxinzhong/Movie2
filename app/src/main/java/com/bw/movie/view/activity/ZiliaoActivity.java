@@ -28,6 +28,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ZiliaoActivity extends BaseActivity<ZiLiaoPresenter> implements Constraint.ZiLiaoView {
 
@@ -139,5 +140,10 @@ public class ZiliaoActivity extends BaseActivity<ZiLiaoPresenter> implements Con
     @Override
     public void shengqiError(String s) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.xximg)
+    public void onViewClicked() {
+        finish();
     }
 }
