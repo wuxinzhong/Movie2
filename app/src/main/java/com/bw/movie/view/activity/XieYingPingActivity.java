@@ -100,10 +100,12 @@ public class XieYingPingActivity extends BaseActivity<MovieCommentPresenter> imp
 
     @Override
     public void commentSuccess(CommentBean commentBean) {
-        if (commentBean.status.equals("0000")){
+        if (commentBean.status.equals("0000")) {
             finish();
-        }else if (commentBean.status.equals("9999")){
-            startActivity(new Intent(this,LoginActivity.class));
+        } else if (commentBean.status.equals("9999")) {
+            startActivity(new Intent(this, LoginActivity.class));
+        } else {
+            Toast.makeText(this, commentBean.message, Toast.LENGTH_SHORT).show();
         }
     }
 

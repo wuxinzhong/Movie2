@@ -1,5 +1,7 @@
 package com.bw.movie.view.activity;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -27,7 +29,7 @@ public class PingLunActivity extends AppCompatActivity {
     TabLayout mypltab;
     @BindView(R.id.myplview)
     ViewPager myplview;
-    List<Fragment> list=new ArrayList<>();
+    List<Fragment> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,8 @@ public class PingLunActivity extends AppCompatActivity {
                 return list.size();
             }
         });
+
+        mypltab.setTabTextColors(ColorStateList.valueOf(Color.WHITE));
 
         mypltab.setupWithViewPager(myplview);
 

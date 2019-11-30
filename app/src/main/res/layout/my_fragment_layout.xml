@@ -54,7 +54,7 @@
             android:layout_marginLeft="@dimen/dp_16"
             android:layout_toRightOf="@id/my_head_ic"
             android:gravity="center"
-            android:text="电影故事"
+            android:text="登录"
             android:textColor="@android:color/black"
             android:textSize="@dimen/sp_15"
             android:textStyle="bold" />

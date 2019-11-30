@@ -2,9 +2,6 @@ package com.bw.movie.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,8 +23,10 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
  */
 public class YugaoFragment extends BaseFragment<MovieXQPresenter> implements Constraint.IMovieXqView {
 
-    private JCVideoPlayerStandard videoplayer;
     private int mMovieId;
+    private JCVideoPlayerStandard videoplayer1;
+    private JCVideoPlayerStandard videoplayer2;
+    private JCVideoPlayerStandard videoplayer3;
 
     @Override
     void initData() {
@@ -60,7 +59,9 @@ public class YugaoFragment extends BaseFragment<MovieXQPresenter> implements Con
     public void onDestroy() {
         super.onDestroy();
         try {
-            videoplayer.releaseAllVideos();
+            videoplayer1.releaseAllVideos();
+            videoplayer2.releaseAllVideos();
+            videoplayer3.releaseAllVideos();
         } catch (Exception e) {
         }
     }
@@ -71,22 +72,40 @@ public class YugaoFragment extends BaseFragment<MovieXQPresenter> implements Con
     }
 
     void initView(View view) {
-        videoplayer = (JCVideoPlayerStandard) view.findViewById(R.id.videoplayer);
+        videoplayer1 = (JCVideoPlayerStandard) view.findViewById(R.id.videoplayer1);
+        videoplayer2 = (JCVideoPlayerStandard) view.findViewById(R.id.videoplayer2);
+        videoplayer3 = (JCVideoPlayerStandard) view.findViewById(R.id.videoplayer3);
     }
 
     @Override
     public void movieXQSuccess(MovieXqBean movieXqBean) {
 
-        videoplayer.TOOL_BAR_EXIST = false;
+        videoplayer1.TOOL_BAR_EXIST = false;
 
-        for (int i = 0; i < movieXqBean.result.shortFilmList.size(); i++) {
-            videoplayer.setUp(movieXqBean.result.shortFilmList.get(i).videoUrl, JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, movieXqBean.result.name);
+        videoplayer1.setUp(movieXqBean.result.shortFilmList.get(0).videoUrl, JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, movieXqBean.result.name);
 
-            Glide.with(getContext()).load(movieXqBean.result.shortFilmList.get(i).imageUrl).into(videoplayer.thumbImageView);
-        }
+        Glide.with(getContext()).load(movieXqBean.result.shortFilmList.get(0).imageUrl).into(videoplayer1.thumbImageView);
 
-        videoplayer.widthRatio = 4;//播放比例
-        videoplayer.heightRatio = 3;
+//        videoplayer1.widthRatio = 4;//播放比例
+//        videoplayer1.heightRatio = 3;
+
+        videoplayer2.TOOL_BAR_EXIST = false;
+
+        videoplayer2.setUp(movieXqBean.result.shortFilmList.get(1).videoUrl, JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, movieXqBean.result.name);
+
+        Glide.with(getContext()).load(movieXqBean.result.shortFilmList.get(1).imageUrl).into(videoplayer2.thumbImageView);
+
+//        videoplayer2.widthRatio = 4;//播放比例
+//        videoplayer2.heightRatio = 3;
+
+        videoplayer3.TOOL_BAR_EXIST = false;
+
+        videoplayer3.setUp(movieXqBean.result.shortFilmList.get(2).videoUrl, JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, movieXqBean.result.name);
+
+        Glide.with(getContext()).load(movieXqBean.result.shortFilmList.get(2).imageUrl).into(videoplayer3.thumbImageView);
+
+//        videoplayer3.widthRatio = 4;//播放比例
+//        videoplayer3.heightRatio = 3;
 
 
     }
@@ -96,4 +115,5 @@ public class YugaoFragment extends BaseFragment<MovieXQPresenter> implements Con
     public void movieXQError(String s) {
 
     }
+
 }

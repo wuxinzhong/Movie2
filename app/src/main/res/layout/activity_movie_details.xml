@@ -170,26 +170,6 @@
                             android:textSize="@dimen/sp_12" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/movie_details_address"
-                        android:layout_marginTop="@dimen/dp_10"
-                        android:gravity="center">
-
-                        <TextView
-                            android:id="@+id/movie_details_yin"
-                            android:layout_width="@dimen/dp_40"
-                            android:layout_height="@dimen/dp_30"
-                            android:gravity="center"
-                            android:paddingLeft="@dimen/dp_10"
-                            android:paddingRight="@dimen/dp_10"
-                            android:text="^"
-                            android:textColor="@android:color/white"
-                            android:textSize="@dimen/sp_30" />
-                    </LinearLayout>
-
-
                 </RelativeLayout>
 
             </LinearLayout>

@@ -9,25 +9,27 @@
     tools:context=".view.activity.GuanZhuActivity">
 
     <RelativeLayout
-        android:layout_marginTop="@dimen/dp_36"
-        android:layout_marginLeft="@dimen/dp_24"
-        android:layout_marginRight="@dimen/dp_21"
         android:layout_width="match_parent"
+        android:layout_height="36dp"
         android:layout_gravity="center"
-        android:layout_height="25dp">
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_36"
+        android:layout_marginRight="@dimen/dp_21">
 
         <ImageView
             android:id="@+id/xximg"
-            android:src="@drawable/back"
-            android:layout_width="@dimen/dp_24"
-            android:layout_height="@dimen/dp_24" />
+            android:layout_width="@dimen/dp_36"
+            android:layout_height="@dimen/dp_36"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/dp_10"
+            android:src="@drawable/back" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
             android:gravity="center"
             android:text="我的关注"
-            android:layout_centerHorizontal="true"
             android:textColor="#d8d8d8"
             android:textSize="@dimen/sp_16" />
 
