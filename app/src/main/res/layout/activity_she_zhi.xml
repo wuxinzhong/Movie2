@@ -13,6 +13,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/iv"
             android:layout_width="@dimen/dp_16"
             android:layout_height="@dimen/dp_16"
             android:background="@drawable/back"
@@ -119,6 +120,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/back"
         android:layout_width="@dimen/dp_312"
         android:layout_height="@dimen/dp_54"
         android:text="退出登录"

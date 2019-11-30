@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="90dp">
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="312dp"
+        android:layout_height="90dp"
+        android:background="#1c2243"
+        >
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_marginTop="11dp"
+            android:layout_marginLeft="10dp"
+            app:actualImageScaleType="centerCrop"
+            app:roundedCornerRadius="10dp"
+            app:roundAsCircle="false"
+            android:id="@+id/iv"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            />
+
+        <TextView
+            android:textSize="14sp"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="94dp"
+            android:textColor="#fff"
+            android:id="@+id/text_zjone1"
+            />
+        <TextView
+            android:textSize="12sp"
+            android:textColor="#fff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="94dp"
+            android:id="@+id/text_zjone2"
+            android:layout_marginTop="45dp"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>
