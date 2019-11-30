@@ -34,7 +34,7 @@ public class MyYPPLBean {
         public String movieName;
         public int movieScore;
         public String myCommentContent;
-        public int myCommentScore;
+        public float myCommentScore;
         public String starring;
     }
 }

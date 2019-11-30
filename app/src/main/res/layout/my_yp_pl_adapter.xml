@@ -1,115 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:gravity="center_horizontal"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal">
 
     <RelativeLayout
-        android:layout_marginTop="@dimen/dp_20"
-        android:background="#1c2243"
         android:layout_width="@dimen/dp_312"
-        android:layout_height="@dimen/dp_231">
+        android:layout_height="@dimen/dp_231"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="#1c2243">
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/ypplimg"
-            android:layout_margin="@dimen/dp_10"
+            app:roundedCornerRadius="@dimen/dp_10"
             android:layout_width="@dimen/dp_84"
-            android:layout_height="@dimen/dp_101" />
+            android:layout_height="@dimen/dp_101"
+            android:layout_margin="@dimen/dp_10" />
 
         <TextView
             android:id="@+id/ypplname"
-            android:text="你是哪个哟"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_toRightOf="@id/ypplimg"
             android:textColor="#ffffff"
-            android:textSize="@dimen/sp_14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textSize="@dimen/sp_14" />
 
         <TextView
             android:id="@+id/yppldy"
-            android:text="你是哪个哟"
-            android:textSize="@dimen/sp_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_40"
             android:layout_toRightOf="@id/ypplimg"
             android:textColor="#ffffff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textSize="@dimen/sp_12" />
 
         <TextView
             android:id="@+id/ypplyy"
-            android:text="你是哪个哟"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_67"
             android:layout_toRightOf="@id/ypplimg"
-            android:textColor="#ffffff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textColor="#ffffff" />
 
         <TextView
             android:id="@+id/ypplpf"
-            android:text="你是哪个哟"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_10"
-            android:lines="1"
             android:layout_marginTop="@dimen/dp_94"
             android:layout_toRightOf="@id/ypplimg"
-            android:textColor="#ffffff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:lines="1"
+            android:textColor="#ffffff" />
 
         <View
-            android:layout_marginTop="@dimen/dp_121"
-            android:background="#ffffff"
-            android:layout_marginLeft="@dimen/dp_10"
-            android:layout_marginRight="@dimen/dp_10"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_2"/>
+            android:layout_height="@dimen/dp_2"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_121"
+            android:layout_marginRight="@dimen/dp_10"
+            android:background="#ffffff" />
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_133"
             android:text="我的评论"
             android:textColor="#fff"
-            android:textSize="@dimen/sp_14"
-            android:layout_marginTop="@dimen/dp_133"
-            android:layout_marginLeft="@dimen/dp_10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textSize="@dimen/sp_14" />
 
         <TextView
             android:id="@+id/ypplpl"
-            android:textSize="@dimen/sp_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_163"
             android:layout_marginRight="@dimen/dp_10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_11" />
 
         <RatingBar
             android:id="@+id/ypplrb"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_207"
             android:isIndicator="true"
             android:numStars="5"
-            android:layout_marginTop="@dimen/dp_207"
-            android:layout_marginLeft="@dimen/dp_10"
             android:progressBackgroundTint="@android:color/white"
-            android:progressTint="#e8185e"
+            android:progressTint="@android:color/white"
             android:rating="2.5"
             android:stepSize="0.5" />
 
         <TextView
             android:id="@+id/yppltime"
-            android:textColor="#fff"
-            android:text="1999-05-06"
-            android:textSize="@dimen/sp_11"
-            android:layout_marginRight="@dimen/dp_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginTop="@dimen/dp_207"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_marginRight="@dimen/dp_10"
+            android:textColor="#fff"
+            android:textSize="@dimen/sp_11" />
 
     </RelativeLayout>
 

@@ -26,9 +26,9 @@ import java.util.List;
  */
 public class MyypplAdapter extends RecyclerView.Adapter<MyypplAdapter.YPPLViewHolder> {
 
-    List<MyYPPLBean.ResultBean> list=new ArrayList<>();
+    List<MyYPPLBean.ResultBean> list = new ArrayList<>();
 
-    public void ypAddAll(List<MyYPPLBean.ResultBean> li){
+    public void ypAddAll(List<MyYPPLBean.ResultBean> li) {
         if (li != null) {
             list.addAll(li);
         }
@@ -43,19 +43,19 @@ public class MyypplAdapter extends RecyclerView.Adapter<MyypplAdapter.YPPLViewHo
 
     @Override
     public void onBindViewHolder(@NonNull YPPLViewHolder ypplViewHolder, int i) {
-        Uri uri=Uri.parse(list.get(i).imageUrl);
+        Uri uri = Uri.parse(list.get(i).imageUrl);
         ypplViewHolder.ypplimg.setImageURI(uri);
         ypplViewHolder.ypplname.setText(list.get(i).movieName);
-        ypplViewHolder.yppldy.setText("导演:"+list.get(i).director);
-        ypplViewHolder.ypplyy.setText("演员:"+list.get(i).starring);
-        ypplViewHolder.ypplpf.setText("评分:"+list.get(i).movieScore);
+        ypplViewHolder.yppldy.setText("导演:" + list.get(i).director);
+        ypplViewHolder.ypplyy.setText("演员:" + list.get(i).starring);
+        ypplViewHolder.ypplpf.setText("评分:" + list.get(i).movieScore);
         ypplViewHolder.ypplpl.setText(list.get(i).myCommentContent);
 
-        Date date=new Date(list.get(i).commentTime);
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        Date date = new Date(list.get(i).commentTime);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         ypplViewHolder.yppltime.setText(simpleDateFormat.format(date));
 
-        ypplViewHolder.ypplrb.setRating(list.get(i).movieScore);
+        ypplViewHolder.ypplrb.setRating(list.get(i).myCommentScore);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class MyypplAdapter extends RecyclerView.Adapter<MyypplAdapter.YPPLViewHo
     class YPPLViewHolder extends RecyclerView.ViewHolder {
 
         private final ImageView ypplimg;
-        private final TextView ypplname,yppldy,ypplyy,ypplpf,yppltime,ypplpl;
+        private final TextView ypplname, yppldy, ypplyy, ypplpf, yppltime, ypplpl;
         private final RatingBar ypplrb;
 
         public YPPLViewHolder(@NonNull View itemView) {
