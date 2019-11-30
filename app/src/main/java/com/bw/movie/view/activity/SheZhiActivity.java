@@ -23,7 +23,7 @@ public class SheZhiActivity extends AppCompatActivity {
                 finish();
             }
         });
-        btn = findViewById(R.id.btn_back);
+        btn = findViewById(R.id.back);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

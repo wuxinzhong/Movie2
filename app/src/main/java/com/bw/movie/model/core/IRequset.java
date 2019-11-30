@@ -1,4 +1,8 @@
 package com.bw.movie.model.core;
+import com.bw.movie.model.bean.Choose;
+import com.bw.movie.model.bean.Schedule;
+import com.bw.movie.model.bean.Seat;
+
 import java.util.List;
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -76,17 +80,17 @@ public interface IRequset {
 //    @GET("cinema/v2/findCinemaByRegion")
 //    Observable<Bean<List<Beantj>>> address(@Query("regionId") int regionId);
 //
-//    //根据电影id,区域id 查询播放影院信息
-//    @GET("movie/v2/findCinemasInfoByRegion")
-//    Observable<Choose> findCinemasInfoByRegion(@Query("movieId") int movieId, @Query("regionId") int regionId, @Query("page") int page, @Query("count") int count);
+    //根据电影id,区域id 查询播放影院信息
+    @GET("movie/v2/findCinemasInfoByRegion")
+    Observable<Choose> findCinemasInfoByRegion(@Query("movieId") int movieId, @Query("regionId") int regionId, @Query("page") int page, @Query("count") int count);
 //
-//    //根据影厅id 查询座位信息
-//    @GET("movie/v2/findSeatInfo")
-//    Observable<Seat> findSeatInfo(@Query("hallId") int hallId);
+    //根据影厅id 查询座位信息
+    @GET("movie/v2/findSeatInfo")
+    Observable<Seat> findSeatInfo(@Query("hallId") int hallId);
 //
-//    //根据电影ID和影院ID查询电影排期列表
-//    @GET("movie/v2/findMovieSchedule")
-//    Observable<Schedule> findMovieSchedule(@Query("movieId") int movieId, @Query("cinemaId") int cinemaId);
+    //根据电影ID和影院ID查询电影排期列表
+    @GET("movie/v2/findMovieSchedule")
+    Observable<Schedule> findMovieSchedule(@Query("movieId") int movieId, @Query("cinemaId") int cinemaId);
 //
 //    //查询电影排期
 //    @GET("tool/v2/findDateList")

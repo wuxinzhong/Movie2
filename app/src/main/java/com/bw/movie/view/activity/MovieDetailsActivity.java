@@ -133,9 +133,6 @@ public class MovieDetailsActivity extends BaseActivity<MovieXQPresenter> impleme
                 intent.putExtra("movieId",mResult.movieId);
                 startActivity(intent);
                 break;
-            case R.id.movie_details_xzgp:
-                startActivity(new Intent(this,AllGouPiaoActivity.class));
-                break;
         }
     }
 
@@ -146,7 +143,6 @@ public class MovieDetailsActivity extends BaseActivity<MovieXQPresenter> impleme
             mResult = movieXqBean.result;
 
             Glide.with(this).load(mResult.imageUrl).into(movieDetailsImg);
-
             movieDetailsPf.setText(String.valueOf(mResult.score + "分"));
             movieDetailsPl.setText(String.valueOf(mResult.commentNum + "条"));
             movieDetailsName.setText(mResult.name);
@@ -154,7 +150,20 @@ public class MovieDetailsActivity extends BaseActivity<MovieXQPresenter> impleme
             movieDetailsTime.setText(mResult.duration);
             movieDetailsAddress.setText(mResult.placeOrigin);
 
-
+            movieDetailsXzgp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent1 = new Intent(MovieDetailsActivity.this, ChooseActivity.class);
+                    intent1.putExtra("id",mMovieId);
+                    intent1.putExtra("video",mResult.shortFilmList.get(0).videoUrl);
+                    intent1.putExtra("iv",mResult.shortFilmList.get(0).imageUrl);
+                    intent1.putExtra("name",mResult.name);
+                    intent1.putExtra("time",mResult.duration);
+                    intent1.putExtra("dao",mResult.movieDirector.get(0).name);
+                    intent1.putExtra("fen",mResult.commentNum);
+                    startActivity(intent1);
+                }
+            });
         }
     }
 

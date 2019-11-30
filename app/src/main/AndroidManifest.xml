@@ -48,6 +48,8 @@
         <activity android:name="com.bw.movie.view.activity.BannerXiangActivity" />
         <activity android:name="com.bw.movie.view.activity.HomePageActivity" />
         <activity android:name="com.bw.movie.view.activity.RegisterActivity" />
+        <activity android:name="com.bw.movie.view.activity.ChooseActivity"/>
+        <activity android:name="com.bw.movie.view.activity.RommActivity"/>
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:exported="true"
