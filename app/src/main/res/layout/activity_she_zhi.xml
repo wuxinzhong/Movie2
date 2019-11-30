@@ -124,6 +124,7 @@
         android:layout_width="@dimen/dp_312"
         android:layout_height="@dimen/dp_54"
         android:text="退出登录"
+        android:id="@+id/back"
         android:textColor="#deffffff"
         android:textSize="@dimen/sp_14"
         android:background="@drawable/lin"

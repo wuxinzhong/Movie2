@@ -1,10 +1,14 @@
-package com.bw.movie.model.http;
+package com.bw.movie.model.okhttp;
 
 import android.util.Log;
 
+
 import com.bw.movie.constant.Constant;
+import com.bw.movie.model.bean.MovieScheduleBean;
 import com.bw.movie.model.bean.MovieTicketsBean;
 import com.bw.movie.model.bean.PayBean;
+import com.bw.movie.model.bean.SeatInfoBean;
+
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -22,6 +26,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
  * function:
  */
+
+
 public class OkHttpUtils<B> {
 
     private final OkHttpClient mOkHttpClient;
@@ -57,12 +63,14 @@ public class OkHttpUtils<B> {
     }
 
 
+
     //购票下单
     public void buyMovieTickets(final IOkCallBack iOkCallBack, Class<B> bean, int userId, String sessionId, int scheduleId, String seat, String sign) {
         Observable<MovieTicketsBean> buyMovieTickets = mIApi.buyMovieTickets(userId, sessionId, scheduleId, seat, sign);
         buyMovieTickets.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<MovieTicketsBean>() {
+
 
                     @Override
                     public void onError(Throwable e) {
@@ -93,6 +101,7 @@ public class OkHttpUtils<B> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<PayBean>() {
 
+
                     @Override
                     public void onError(Throwable e) {
 
@@ -114,6 +123,10 @@ public class OkHttpUtils<B> {
                     }
                 });
     }
+
+
+
+
 
 
 

@@ -10,9 +10,10 @@ import android.widget.PopupWindow;
 import android.widget.RadioButton;
 
 import com.bw.movie.R;
+import com.bw.movie.presenter.MovieSchedulePresenter;
 import com.bw.movie.view.custom.SeatTable;
 
-public class AllGouPiaoActivity extends AppCompatActivity {
+public class AllGouPiaoActivity extends BaseActivity<MovieSchedulePresenter> {
 
     private SeatTable mSearchView;
     private Button prices;
@@ -24,6 +25,13 @@ public class AllGouPiaoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_gou_piao);
+
+
+
+    }
+
+    @Override
+    void initData() {
 
         mSearchView = findViewById(R.id.mSearchView);
         prices = findViewById(R.id.prices);
@@ -73,8 +81,21 @@ public class AllGouPiaoActivity extends AppCompatActivity {
 
         });
         mSearchView.setData(10, 13);
+    }
 
+    @Override
+    MovieSchedulePresenter getPresenter() {
+        return null;
+    }
 
+    @Override
+    void initListener() {
+
+    }
+
+    @Override
+    int initLayout() {
+        return R.layout.activity_all_gou_piao;
     }
 
     private void showPopueWindow() {
