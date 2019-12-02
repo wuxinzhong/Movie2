@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>文件描述：<p>
@@ -15,10 +16,10 @@ import java.util.ArrayList;
  */
 public class MovieXqTabAdapter extends FragmentPagerAdapter {
 
-    private ArrayList<String> mTitle;
-    private ArrayList<Fragment> mList;
+    private List<String> mTitle;
+    private List<Fragment> mList;
 
-    public MovieXqTabAdapter(FragmentManager fm, ArrayList<String> title, ArrayList<Fragment> list) {
+    public MovieXqTabAdapter(FragmentManager fm, List<String> title, List<Fragment> list) {
         super(fm);
         mTitle = title;
         mList = list;

@@ -86,11 +86,8 @@ public class ShangYingRecycleAdapter extends RecyclerView.Adapter<ShangYingRecyc
 
                 if (mYuYue != null)
                     mYuYue.movieYy(mList.get(i).movieId);
-
             }
         });
-
-
 
     }
 

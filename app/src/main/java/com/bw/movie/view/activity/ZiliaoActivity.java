@@ -90,6 +90,48 @@ public class ZiliaoActivity extends BaseActivity<ZiLiaoPresenter> implements Con
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        DaoSession daoSession = DaoMaster.newDevSession(this, UserDao.TABLENAME);
+        mUserDao = daoSession.getUserDao();
+
+        List<User> users = mUserDao.loadAll();
+        for (int i = 0; i < users.size(); i++) {
+            sessionId = users.get(i).getSessionId();
+            userId = users.get(i).getUserId();
+            birthDay = users.get(i).getBirthDay();
+        }
+
+        presenter.ZiLiao(userId, sessionId);
+
+        zltime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //时间选择器
+                pvTime = new TimePickerBuilder(ZiliaoActivity.this, new OnTimeSelectListener() {
+                    @Override
+                    public void onTimeSelect(Date date, View v) {
+                        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+                        zltime.setText(simpleDateFormat.format(date));
+
+                        User user=new User();
+                        user.setBirthDay(simpleDateFormat.format(date));
+                        mUserDao.update(user);
+
+                        presenter.ShengRi(userId,sessionId,simpleDateFormat.format(date));
+
+                        zltime.setText(simpleDateFormat.format(date));
+                    }
+                }).build();
+
+                pvTime.show();
+            }
+        });
+
+    }
+
+    @Override
     ZiLiaoPresenter getPresenter() {
         return new ZiLiaoPresenter();
     }

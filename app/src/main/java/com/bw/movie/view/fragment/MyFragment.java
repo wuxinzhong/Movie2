@@ -84,6 +84,9 @@ public class MyFragment extends Fragment {
         DaoSession daoSession = DaoMaster.newDevSession(getContext(), UserDao.TABLENAME);
         mUserDao = daoSession.getUserDao();
 
+        Glide.with(getContext()).load(R.mipmap.ic_launcher_round).into(myHeadIc);
+        mytextname.setText("昵称");
+
         return view;
     }
 

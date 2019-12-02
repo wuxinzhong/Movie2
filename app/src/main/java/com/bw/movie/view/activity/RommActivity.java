@@ -101,7 +101,7 @@ public class RommActivity extends BaseActivity<MovieSchedulePresenter> implement
     private int n = 0;
     private UserDao mUserDao;
     private int userId;
-    private int id;
+    private int id1;
     private String sessionId;
     private int tid;
 
@@ -124,8 +124,6 @@ public class RommActivity extends BaseActivity<MovieSchedulePresenter> implement
         linerLay = findViewById(R.id.liner_lay);
         radioWx = findViewById(R.id.radio_wx);
         radioWx = findViewById(R.id.radio_wx);
-        DaoSession daoSession = DaoMaster.newDevSession(this, UserDao.TABLENAME);
-        mUserDao = daoSession.getUserDao();
         roomBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,7 +159,14 @@ public class RommActivity extends BaseActivity<MovieSchedulePresenter> implement
 
     @Override
     void initListener() {
+        DaoSession daoSession = DaoMaster.newDevSession(this, UserDao.TABLENAME);
+        mUserDao = daoSession.getUserDao();
 
+        List<User> users = mUserDao.loadAll();
+        for (int i = 0; i < users.size(); i++) {
+            sessionId = users.get(i).getSessionId();
+            userId = users.get(i).getUserId();
+        }
     }
 
     @Override
@@ -176,20 +181,14 @@ public class RommActivity extends BaseActivity<MovieSchedulePresenter> implement
 
     @Override
     public void buyMovieTicketsSuccess(MovieTicketsBean movieTicketsBean) {
-        if (movieTicketsBean.getStatus().equals("0000")){
-            Toast.makeText(this,movieTicketsBean.getMessage(), Toast.LENGTH_SHORT).show();
+        if (movieTicketsBean.getStatus().equals("0000")) {
+            Toast.makeText(this, movieTicketsBean.getMessage(), Toast.LENGTH_SHORT).show();
             String orderId = movieTicketsBean.getOrderId();
-            Log.e("orderId",orderId);
-            presenter.pay(userId,sessionId,1,orderId);
-        }else {
-            Toast.makeText(this,movieTicketsBean.getMessage(), Toast.LENGTH_SHORT).show();
+            Log.e("orderId", orderId);
+            presenter.pay(userId, sessionId, 1, orderId);
+        } else {
+            Toast.makeText(this, movieTicketsBean.getMessage(), Toast.LENGTH_SHORT).show();
         }
-    }
-    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
-    public void Message(User userBean){
-        userId = userBean.getUserId();
-        sessionId = userBean.getSessionId();
-
     }
 
     @Override
@@ -199,7 +198,7 @@ public class RommActivity extends BaseActivity<MovieSchedulePresenter> implement
 
     @Override
     public void paySuccess(PayBean payBean) {
-        if (payBean.getStatus().equals("0000")){
+        if (payBean.getStatus().equals("0000")) {
             IWXAPI wxapi = WXAPIFactory.createWXAPI(RommActivity.this, null);
             wxapi.registerApp("wxb3852e6a6b7d9516");
             PayReq payReq = new PayReq();
@@ -207,14 +206,14 @@ public class RommActivity extends BaseActivity<MovieSchedulePresenter> implement
             payReq.partnerId = payBean.getPartnerId();
             payReq.prepayId = payBean.getPrepayId();
             payReq.nonceStr = payBean.getNonceStr();
-            payReq.timeStamp = payBean.getTimeStamp()+"";
+            payReq.timeStamp = payBean.getTimeStamp() + "";
             payReq.packageValue = payBean.getPackageValue();
             payReq.sign = payBean.getSign();
             payReq.extData = "app data"; // optional
             wxapi.sendReq(payReq);
             RommActivity.this.finish();
-        }else {
-            Toast.makeText(this,payBean.getMessage(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, payBean.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -230,9 +229,11 @@ public class RommActivity extends BaseActivity<MovieSchedulePresenter> implement
             ScheAdapte scheAdapte = new ScheAdapte(RommActivity.this, result);
             scheAdapte.setOnActi(new ScheAdapte.OnActi() {
                 @Override
-                public void onActi(int i) {
+                public void onActi(int i, int id) {
                     SeatPresenter seatPresenter = new SeatPresenter(new SeatCall());
                     seatPresenter.getModel(i);
+
+                    id1 = id;
                 }
             });
             roomRecycler.setAdapter(scheAdapte);
@@ -256,9 +257,11 @@ public class RommActivity extends BaseActivity<MovieSchedulePresenter> implement
             roomMovieSeat.setAdapter(movieSeatAdapter);
             GridLayoutManager gridLayoutManager = new GridLayoutManager(RommActivity.this, 6);
             roomMovieSeat.setLayoutManager(gridLayoutManager);
-            movieSeatAdapter.setOnActi(new ScheAdapte.OnActi() {
+            movieSeatAdapter.setOnActi(new MovieSeatAdapter.OnActi1() {
                 @Override
-                public void onActi(int i) {
+                public void onActi1(int i, String str) {
+
+                    string = str;
                     n = i;
                     if (n != 0) {
                         btnPurchaseOrder.setVisibility(View.VISIBLE);
@@ -272,6 +275,7 @@ public class RommActivity extends BaseActivity<MovieSchedulePresenter> implement
                 }
             });
         }
+
         @Override
         public void onFalse(String msg) {
 
@@ -283,14 +287,14 @@ public class RommActivity extends BaseActivity<MovieSchedulePresenter> implement
         switch (view.getId()) {
             //微信
             case R.id.radio_wx:
-                radioWx.setChecked(false);
-                String s = userId+""+ tid + "movie";
-                Log.e("MessageUserId",userId+"");
-                Log.e("MessageUserId",id+"");
-                Log.e("MyMessageSss",s);
+//                radioWx.setChecked(false);
+                String s = userId + "" + id1 + "movie";
+                Log.e("MessageUserId", userId + "");
+                Log.e("MessageUserId", id1 + "");
+                Log.e("MyMessageSss", s);
                 String sign = MD5Utils.MD5(s);
-                Log.e("MyMessageSsign",sign);
-                presenter.buyMovieTickets(userId,sessionId,tid,string,sign);
+                Log.e("MyMessageSsign", sign);
+                presenter.buyMovieTickets(userId, sessionId, id1, string, sign);
                 break;
             //支付宝
             case R.id.radio_zzfb:
@@ -303,9 +307,11 @@ public class RommActivity extends BaseActivity<MovieSchedulePresenter> implement
                 real.setVisibility(View.GONE);
                 linerLay.setVisibility(View.VISIBLE);
                 break;
-            default:break;
+            default:
+                break;
         }
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

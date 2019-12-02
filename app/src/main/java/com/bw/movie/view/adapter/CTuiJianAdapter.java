@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.bw.movie.R;
 import com.bw.movie.model.bean.CTuiJianBean;
 import com.bw.movie.view.activity.YingYuanXiangQing;
@@ -44,6 +46,7 @@ public class CTuiJianAdapter extends RecyclerView.Adapter<CTuiJianAdapter.TuiJia
         tuiJianViewHoler.tuijianaddress.setText(list.get(i).address);
         tuiJianViewHoler.tuijianname.setText(list.get(i).name);
         Glide.with(tuiJianViewHoler.itemView.getContext()).load(list.get(i).logo)
+                .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
                 .into(tuiJianViewHoler.tuijianimg);
         tuiJianViewHoler.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

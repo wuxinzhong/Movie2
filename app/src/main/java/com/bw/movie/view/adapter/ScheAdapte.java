@@ -40,7 +40,7 @@ public class ScheAdapte extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onActi.onActi(result.get(i).getHallId());
+                onActi.onActi(result.get(i).getHallId(),result.get(i).getId());
             }
         });
 
@@ -69,7 +69,7 @@ public class ScheAdapte extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     //定义接口
     public interface OnActi{
-        void onActi(int i);
+        void onActi(int i,int id);
     }
 
 }

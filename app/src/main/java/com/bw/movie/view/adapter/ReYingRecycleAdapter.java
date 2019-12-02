@@ -66,7 +66,9 @@ public class ReYingRecycleAdapter extends RecyclerView.Adapter<ReYingRecycleAdap
         reYingViewHolder.ry_btn_gp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                reYingViewHolder.itemView.getContext().startActivity(new Intent(reYingViewHolder.itemView.getContext(), AllGouPiaoActivity.class));
+                Intent intent = new Intent(reYingViewHolder.itemView.getContext(), MovieDetailsActivity.class);
+                intent.putExtra("movieId", mList.get(i).movieId);
+                reYingViewHolder.itemView.getContext().startActivity(intent);
             }
         });
     }
