@@ -21,6 +21,7 @@ import com.bw.movie.model.bean.ReYingBean;
 import com.bw.movie.model.bean.RegisterBean;
 
 import com.bw.movie.model.bean.SearchBean;
+import com.bw.movie.model.bean.SeenMovieBean;
 import com.bw.movie.model.bean.ShangYingBean;
 import com.bw.movie.model.bean.TICketBean;
 import com.bw.movie.model.bean.XLLoginBean;
@@ -33,6 +34,8 @@ import com.bw.movie.model.bean.YingYuanLieBiaoBean;
 import com.bw.movie.model.bean.YuYueBean;
 import com.bw.movie.model.bean.ZiLiaoBean;
 import com.bw.movie.view.interfaces.IBaseView;
+
+import java.util.Map;
 
 /**
  * <p>文件描述：契约类<p>
@@ -277,5 +280,12 @@ public interface Constraint {
         void doViewSuccess(TICketBean tiCketBean);
 
         void doViewError(String s);
+    }
+
+    //看过的电影
+    interface doSeenMovie extends IBaseView {
+        void doSeenMovieSuccess(SeenMovieBean seenMovieBean);
+
+        void doSeenMovieError(String s);
     }
 }

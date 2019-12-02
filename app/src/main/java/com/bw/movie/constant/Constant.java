@@ -23,6 +23,7 @@ import com.bw.movie.model.bean.ReYingBean;
 import com.bw.movie.model.bean.RegisterBean;
 
 import com.bw.movie.model.bean.SearchBean;
+import com.bw.movie.model.bean.SeenMovieBean;
 import com.bw.movie.model.bean.ShangYingBean;
 import com.bw.movie.model.bean.TICketBean;
 import com.bw.movie.model.bean.XLLoginBean;
@@ -286,4 +287,9 @@ public interface Constant {
                                     @Query("page") int page,
                                     @Query("count") int count,
                                     @Query("status") int status);
+
+    //查询看过的电影
+    @GET("movieApi/user/v2/verify/findSeenMovie")
+    Observable<SeenMovieBean> onSeenMovie(@HeaderMap Map<String,Object> map);
+
 }
