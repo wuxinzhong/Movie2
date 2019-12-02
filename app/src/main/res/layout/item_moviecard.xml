@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:background="@drawable/background"
-    android:layout_height="wrap_content">
+    android:layout_height="@dimen/dp_160">
     <LinearLayout
-        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_20"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
@@ -41,6 +41,7 @@
                 android:src="@drawable/group" />
 
             <TextView
+                android:id="@+id/tv_seat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="31dp"
@@ -109,10 +110,11 @@
                     android:textSize="16sp" />
 
                 <Button
+                    android:id="@+id/btn"
                     android:layout_width="@dimen/dp_76"
                     android:layout_height="@dimen/dp_28"
                     android:layout_marginRight="19dp"
-                    android:background="#e8185e"
+                    android:background="@drawable/shapesbutton4"
                     android:text="查看取票码"
                     android:textColor="#fff"
                     android:textSize="@dimen/dp_12" />

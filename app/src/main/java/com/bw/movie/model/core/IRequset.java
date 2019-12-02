@@ -1,5 +1,7 @@
 package com.bw.movie.model.core;
 import com.bw.movie.model.bean.Choose;
+import com.bw.movie.model.bean.MovieCard;
+import com.bw.movie.model.bean.QuPiao;
 import com.bw.movie.model.bean.Schedule;
 import com.bw.movie.model.bean.Seat;
 
@@ -125,5 +127,11 @@ public interface IRequset {
 //    @GET("user/v2/verify/findUserBuyTicketRecord")
 //    Observable<>  findUserBuyTicketRecord(@Header("userId")int userId,@Header("sessionId")String sessionId);
 
+    //我的电影票
+    @GET("user/v2/verify/findMyMovieTicket")
+    Observable<MovieCard> findMyMovieTicket(@Header("userId") int userId, @Header("sessionId") String sessionId);
 
+    //查询取票码
+    @GET("user/v2/verify/findExchangeCode")
+    Observable<QuPiao> findExchangeCode(@Header("userId") int userId, @Header("sessionId") String sessionId,@Query("recordId")int recordId);
 }

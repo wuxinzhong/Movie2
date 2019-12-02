@@ -209,6 +209,7 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
     @Override
     public void bannerSuccess(HomeBanner homeBanner) {
         if (homeBanner.status.equals("0000")) {
+
 //            Toast.makeText(getContext(), bannerBeans.message, Toast.LENGTH_SHORT).show();
             final List<HomeBanner.ResultBean> result = homeBanner.result;
 
