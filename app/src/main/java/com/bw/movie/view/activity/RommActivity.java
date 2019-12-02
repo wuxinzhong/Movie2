@@ -15,21 +15,69 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bw.movie.R;
+import com.bw.movie.dao.DaoMaster;
+import com.bw.movie.dao.DaoSession;
+import com.bw.movie.dao.UserDao;
+import com.bw.movie.jiami.MD5Utils;
+import com.bw.movie.model.bean.MovieScheduleBean;
+import com.bw.movie.model.bean.MovieTicketsBean;
+import com.bw.movie.model.bean.PayBean;
 import com.bw.movie.model.bean.Schedule;
 import com.bw.movie.model.bean.Seat;
+import com.bw.movie.model.bean.SeatInfoBean;
+import com.bw.movie.model.bean.User;
 import com.bw.movie.model.core.DataCall;
+import com.bw.movie.model.core.IContractView;
+import com.bw.movie.presenter.MovieSchedulePresenter;
 import com.bw.movie.presenter.SchePresenter;
 import com.bw.movie.presenter.SeatPresenter;
 import com.bw.movie.view.adapter.MovieSeatAdapter;
 import com.bw.movie.view.adapter.ScheAdapte;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
-public class RommActivity extends AppCompatActivity {
+public class RommActivity extends BaseActivity<MovieSchedulePresenter> implements IContractView.IMovieScheduleView {
+    @BindView(R.id.room_back)
+    ImageView mRoomBack;
+    @BindView(R.id.room_name)
+    TextView mRoomName;
+    @BindView(R.id.layout)
+    LinearLayout mLayout;
+    @BindView(R.id.room_VideoPlayer)
+    JCVideoPlayerStandard mRoomVideoPlayer;
+    @BindView(R.id.room_movieSeat)
+    RecyclerView mRoomMovieSeat;
+    @BindView(R.id.real)
+    RelativeLayout mReal;
+    @BindView(R.id.room_time)
+    TextView mRoomTime;
+    @BindView(R.id.room_recycler)
+    RecyclerView mRoomRecycler;
+    @BindView(R.id.radio_wx)
+    RadioButton mRadioWx;
+    @BindView(R.id.radio_zzfb)
+    RadioButton mRadioZzfb;
+    @BindView(R.id.liner_lay)
+    LinearLayout mLinerLay;
+    @BindView(R.id.btn_purchaseOrder)
+    Button mBtnPurchaseOrder;
+    @BindView(R.id.room_btn)
+    Button mRoomBtn;
     private ImageView roomBack;
     private TextView roomName;
     private LinearLayout layout;
@@ -37,7 +85,7 @@ public class RommActivity extends AppCompatActivity {
     private RecyclerView roomMovieSeat;
     private RelativeLayout real;
     private TextView roomTime;
-    private  RecyclerView roomRecycler;
+    private RecyclerView roomRecycler;
     private Button btnPurchaseOrder;
     private Button roomBtn;
     private RadioButton radioZzfb;
@@ -50,11 +98,18 @@ public class RommActivity extends AppCompatActivity {
     private CheckBox wxzf;
     private String orderId;
     private SchePresenter schePresenter;
-    private int n=0;
+    private int n = 0;
+    private UserDao mUserDao;
+    private int userId;
+    private int id1;
+    private String sessionId;
+    private int tid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_romm);
+        ButterKnife.bind(this);
         roomBack = findViewById(R.id.room_back);
         roomName = findViewById(R.id.room_name);
         layout = findViewById(R.id.layout);
@@ -76,14 +131,14 @@ public class RommActivity extends AppCompatActivity {
             }
         });
         Intent intent = getIntent();
-        int tid = intent.getIntExtra("tid", 0);
+        tid = intent.getIntExtra("tid", 0);
         int yid = intent.getIntExtra("yid", 0);
         String video = intent.getStringExtra("video");
         String iv = intent.getStringExtra("iv");
-        roomVideoPlayer.setUp(video,roomVideoPlayer.SCREEN_LAYOUT_NORMAL,"");
+        roomVideoPlayer.setUp(video, roomVideoPlayer.SCREEN_LAYOUT_NORMAL, "");
         Glide.with(RommActivity.this).load(iv).into(roomVideoPlayer.thumbImageView);
         schePresenter = new SchePresenter(new myCall());
-        schePresenter.getModel(yid,tid);
+        schePresenter.getModel(yid, tid);
         btnPurchaseOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,16 +146,94 @@ public class RommActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    void initData() {
+
+    }
+
+    @Override
+    MovieSchedulePresenter getPresenter() {
+        return new MovieSchedulePresenter();
+    }
+
+    @Override
+    void initListener() {
+        DaoSession daoSession = DaoMaster.newDevSession(this, UserDao.TABLENAME);
+        mUserDao = daoSession.getUserDao();
+
+        List<User> users = mUserDao.loadAll();
+        for (int i = 0; i < users.size(); i++) {
+            sessionId = users.get(i).getSessionId();
+            userId = users.get(i).getUserId();
+        }
+    }
+
+    @Override
+    int initLayout() {
+        return R.layout.activity_romm;
+    }
+
+    @Override
+    public void movieScheduleSuccess(MovieScheduleBean movieScheduleBean) {
+
+    }
+
+    @Override
+    public void buyMovieTicketsSuccess(MovieTicketsBean movieTicketsBean) {
+        if (movieTicketsBean.getStatus().equals("0000")) {
+            Toast.makeText(this, movieTicketsBean.getMessage(), Toast.LENGTH_SHORT).show();
+            String orderId = movieTicketsBean.getOrderId();
+            Log.e("orderId", orderId);
+            presenter.pay(userId, sessionId, 1, orderId);
+        } else {
+            Toast.makeText(this, movieTicketsBean.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void seatInfoSuccess(SeatInfoBean seatInfoBean) {
+
+    }
+
+    @Override
+    public void paySuccess(PayBean payBean) {
+        if (payBean.getStatus().equals("0000")) {
+            IWXAPI wxapi = WXAPIFactory.createWXAPI(RommActivity.this, null);
+            wxapi.registerApp("wxb3852e6a6b7d9516");
+            PayReq payReq = new PayReq();
+            payReq.appId = "wxb3852e6a6b7d9516";
+            payReq.partnerId = payBean.getPartnerId();
+            payReq.prepayId = payBean.getPrepayId();
+            payReq.nonceStr = payBean.getNonceStr();
+            payReq.timeStamp = payBean.getTimeStamp() + "";
+            payReq.packageValue = payBean.getPackageValue();
+            payReq.sign = payBean.getSign();
+            payReq.extData = "app data"; // optional
+            wxapi.sendReq(payReq);
+            RommActivity.this.finish();
+        } else {
+            Toast.makeText(this, payBean.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void movieScheduleError(String msg) {
+
+    }
+
     class myCall implements DataCall {
         @Override
         public void onSuccess(Object o) {
-            List<Schedule.ResultBean> result=(List<Schedule.ResultBean>) o;
+            List<Schedule.ResultBean> result = (List<Schedule.ResultBean>) o;
             ScheAdapte scheAdapte = new ScheAdapte(RommActivity.this, result);
             scheAdapte.setOnActi(new ScheAdapte.OnActi() {
                 @Override
-                public void onActi(int i) {
+                public void onActi(int i, int id) {
                     SeatPresenter seatPresenter = new SeatPresenter(new SeatCall());
                     seatPresenter.getModel(i);
+
+                    id1 = id;
                 }
             });
             roomRecycler.setAdapter(scheAdapte);
@@ -114,24 +247,27 @@ public class RommActivity extends AppCompatActivity {
 
         }
     }
-    class SeatCall implements DataCall{
+
+    class SeatCall implements DataCall {
         @Override
         public void onSuccess(Object o) {
-            List<Seat.ResultBean> result=(List<Seat.ResultBean>) o;
-            Log.i("xxx", "onSuccess: "+ result.get(0).getRow());
-            MovieSeatAdapter movieSeatAdapter = new MovieSeatAdapter( result);
+            List<Seat.ResultBean> result = (List<Seat.ResultBean>) o;
+            Log.i("xxx", "onSuccess: " + result.get(0).getRow());
+            MovieSeatAdapter movieSeatAdapter = new MovieSeatAdapter(result);
             roomMovieSeat.setAdapter(movieSeatAdapter);
             GridLayoutManager gridLayoutManager = new GridLayoutManager(RommActivity.this, 6);
             roomMovieSeat.setLayoutManager(gridLayoutManager);
-            movieSeatAdapter.setOnActi(new ScheAdapte.OnActi() {
+            movieSeatAdapter.setOnActi(new MovieSeatAdapter.OnActi1() {
                 @Override
-                public void onActi(int i) {
-                    n=i;
-                    if (n!=0){
+                public void onActi1(int i, String str) {
+
+                    string = str;
+                    n = i;
+                    if (n != 0) {
                         btnPurchaseOrder.setVisibility(View.VISIBLE);
-                        btnPurchaseOrder.setText("订"+n+"张票");
+                        btnPurchaseOrder.setText("订" + n + "张票");
                         roomBtn.setVisibility(View.GONE);
-                    }else {
+                    } else {
                         linerLay.setVisibility(View.GONE);
                         btnPurchaseOrder.setVisibility(View.GONE);
                         roomBtn.setVisibility(View.VISIBLE);
@@ -145,6 +281,37 @@ public class RommActivity extends AppCompatActivity {
 
         }
     }
+
+    @OnClick({R.id.radio_wx, R.id.radio_zzfb, R.id.room_btn, R.id.btn_purchaseOrder})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            //微信
+            case R.id.radio_wx:
+//                radioWx.setChecked(false);
+                String s = userId + "" + id1 + "movie";
+                Log.e("MessageUserId", userId + "");
+                Log.e("MessageUserId", id1 + "");
+                Log.e("MyMessageSss", s);
+                String sign = MD5Utils.MD5(s);
+                Log.e("MyMessageSsign", sign);
+                presenter.buyMovieTickets(userId, sessionId, id1, string, sign);
+                break;
+            //支付宝
+            case R.id.radio_zzfb:
+                radioZzfb.setChecked(false);
+                break;
+            case R.id.room_btn:
+                break;
+            //立即支付
+            case R.id.btn_purchaseOrder:
+                real.setVisibility(View.GONE);
+                linerLay.setVisibility(View.VISIBLE);
+                break;
+            default:
+                break;
+        }
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

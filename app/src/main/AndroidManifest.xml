@@ -51,6 +51,7 @@
         <activity android:name="com.bw.movie.view.activity.RegisterActivity" />
         <activity android:name="com.bw.movie.view.activity.ChooseActivity"/>
         <activity android:name="com.bw.movie.view.activity.RommActivity"/>
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:exported="true"

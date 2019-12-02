@@ -23,7 +23,9 @@ import com.bw.movie.model.bean.ReYingBean;
 import com.bw.movie.model.bean.RegisterBean;
 
 import com.bw.movie.model.bean.SearchBean;
+import com.bw.movie.model.bean.SeenMovieBean;
 import com.bw.movie.model.bean.ShangYingBean;
+import com.bw.movie.model.bean.TICketBean;
 import com.bw.movie.model.bean.XLLoginBean;
 import com.bw.movie.model.bean.XiaoXiBean;
 import com.bw.movie.model.bean.YYGuanZhuBean;
@@ -34,13 +36,17 @@ import com.bw.movie.model.bean.YuYueBean;
 import com.bw.movie.model.bean.ZiLiaoBean;
 import com.bw.movie.view.activity.YingYuanXiangQing;
 
+import java.util.Map;
+
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.HeaderMap;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 /**
  * <p>文件描述：接口<p>
@@ -272,4 +278,18 @@ public interface Constant {
                             @Header("sessionId") String sessionId,
                             @Field("payType") int payType,
                             @Field("orderId") String orderId);
+
+
+    //  订单支付于未支付
+    @GET("movieApi/user/v2/verify/findUserBuyTicketRecord")
+    Observable<TICketBean> onTicket(@Header("userId") int userId,
+                                    @Header("sessionId") String sessionId,
+                                    @Query("page") int page,
+                                    @Query("count") int count,
+                                    @Query("status") int status);
+
+    //查询看过的电影
+    @GET("movieApi/user/v2/verify/findSeenMovie")
+    Observable<SeenMovieBean> onSeenMovie(@HeaderMap Map<String,Object> map);
+
 }

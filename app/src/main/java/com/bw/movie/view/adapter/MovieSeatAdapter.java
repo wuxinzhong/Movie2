@@ -62,7 +62,7 @@ public class MovieSeatAdapter extends RecyclerView.Adapter<MovieSeatAdapter.Movi
                    }
 
                }
-                onActi.onActi(n);
+                onActi.onActi1(n,seat);
             }
         });
 
@@ -81,14 +81,14 @@ public class MovieSeatAdapter extends RecyclerView.Adapter<MovieSeatAdapter.Movi
             cheBox  = inflate.findViewById(R.id.che_box);
         }
     }
-    public ScheAdapte.OnActi onActi;
+    public OnActi1 onActi;
 
-    public void setOnActi(ScheAdapte.OnActi onActi) {
+    public void setOnActi(OnActi1 onActi) {
         this.onActi = onActi;
     }
 
     //定义接口
-    public interface OnActi{
-        void onActi(int i);
+    public interface OnActi1{
+        void onActi1(int i,String str);
     }
 }

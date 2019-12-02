@@ -2,6 +2,7 @@ package com.bw.movie.view.activity;
 
 import android.support.v7.app.AppCompatActivity;
 
+import com.bw.movie.model.http.ActivityCollectorUtil;
 import com.bw.movie.presenter.BasePresenter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     public P presenter;
     private Unbinder mBind;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,9 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         initListener();
         presenter = getPresenter();
         presenter.attachView(this);
+
+        ActivityCollectorUtil.addActivity(this);
+
         initData();
     }
 
@@ -49,5 +54,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         super.onDestroy();
         mBind.unbind();
         presenter.detachView();
+        ActivityCollectorUtil.removeActivity(this);
     }
 }

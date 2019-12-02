@@ -69,7 +69,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                     //用户换取access_token的code，仅在ErrCode为0时有效
                     String code = ((SendAuth.Resp) baseResp).code;
                     String state = ((SendAuth.Resp) baseResp).state;
-                    Log.i(TAG, "code:------>" + code);
+                    Log.i("aaaa", "code:------>" + code);
                     EventBus.getDefault().postSticky(code);
                     //这里拿到了这个code，去做2次网络请求获取access_token和用户个人信息
 //                     WXLoginUtils().getWXLoginResult(code, this);

@@ -21,7 +21,9 @@ import com.bw.movie.model.bean.ReYingBean;
 import com.bw.movie.model.bean.RegisterBean;
 
 import com.bw.movie.model.bean.SearchBean;
+import com.bw.movie.model.bean.SeenMovieBean;
 import com.bw.movie.model.bean.ShangYingBean;
+import com.bw.movie.model.bean.TICketBean;
 import com.bw.movie.model.bean.XLLoginBean;
 
 import com.bw.movie.model.bean.XiaoXiBean;
@@ -32,6 +34,8 @@ import com.bw.movie.model.bean.YingYuanLieBiaoBean;
 import com.bw.movie.model.bean.YuYueBean;
 import com.bw.movie.model.bean.ZiLiaoBean;
 import com.bw.movie.view.interfaces.IBaseView;
+
+import java.util.Map;
 
 /**
  * <p>文件描述：契约类<p>
@@ -88,14 +92,15 @@ public interface Constraint {
     }
 
     //更多
-    interface IGengDuoRYView extends IBaseView{
+    interface IGengDuoRYView extends IBaseView {
         //热映
         void reyingSuccess(ReYingBean reYingBean);
 
         void reyingError(String s);
     }
+
     //更多
-    interface IGengDuoSYView extends IBaseView{
+    interface IGengDuoSYView extends IBaseView {
         //上映
         void shangyingSuccess(ShangYingBean shangYingBean);
 
@@ -106,8 +111,9 @@ public interface Constraint {
 
         void yuyueError(String s);
     }
+
     //更多
-    interface IGengDuoRMView extends IBaseView{
+    interface IGengDuoRMView extends IBaseView {
         //热门
         void popularSuccess(PopularMovieBean popularMovieBean);
 
@@ -210,47 +216,76 @@ public interface Constraint {
     }
 
     //个人资料
-    interface ZiLiaoView extends IBaseView{
+    interface ZiLiaoView extends IBaseView {
         void ziliaoSuccess(ZiLiaoBean ziLiaoBean);
+
         void ziliaoError(String s);
 
         void shengqiSuccess(YYGuanZhuBean guanZhuBean);
+
         void shengqiError(String s);
     }
+
     //我的关注..影院
-    interface GuanZhuYingYuanView extends IBaseView{
+    interface GuanZhuYingYuanView extends IBaseView {
         void gzyySuccess(GuanZhuYingYuanBean gzyybean);
+
         void gzyyError(String s);
     }
+
     //我的关注..电影
-    interface GuanZhuDianYingView extends IBaseView{
+    interface GuanZhuDianYingView extends IBaseView {
         void gzdySuccess(GuanZhuDianYingBean gzdyBean);
+
         void gzdyError(String s);
     }
+
     //我的预约
-    interface YuYueView extends IBaseView{
+    interface YuYueView extends IBaseView {
         void yuyueSuccess(YuYueBean yuYueBean);
+
         void yuyueError(String s);
     }
+
     //意见反馈
-    interface FanKuiView extends IBaseView{
+    interface FanKuiView extends IBaseView {
         void fankuiSuccess(YYGuanZhuBean fankui);
+
         void fankuiError(String s);
     }
+
     //我的影片评论
-    interface MyypplView extends IBaseView{
+    interface MyypplView extends IBaseView {
         void ypplSuccess(MyYPPLBean ypplBean);
+
         void ypplError(String s);
     }
+
     //我的影院评论
-    interface MyyyplView extends IBaseView{
+    interface MyyyplView extends IBaseView {
         void yyplSuccess(MyYYPLBean yyplBean);
+
         void yyplError(String s);
     }
+
     //写影评
     interface IMovieCommentView extends IBaseView {
         void commentSuccess(CommentBean commentBean);
 
         void commentError(String s);
+    }
+
+    //购票记录查询
+    interface IDoView extends IBaseView {
+        void doViewSuccess(TICketBean tiCketBean);
+
+        void doViewError(String s);
+    }
+
+    //看过的电影
+    interface doSeenMovie extends IBaseView {
+        void doSeenMovieSuccess(SeenMovieBean seenMovieBean);
+
+        void doSeenMovieError(String s);
     }
 }

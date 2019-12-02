@@ -68,7 +68,9 @@ public class ReMenAdapter extends RecyclerView.Adapter<ReMenAdapter.PopularViewH
         popularViewHolder.search_movie_shop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                popularViewHolder.itemView.getContext().startActivity(new Intent(popularViewHolder.itemView.getContext(), AllGouPiaoActivity.class));
+                Intent intent = new Intent(popularViewHolder.itemView.getContext(), MovieDetailsActivity.class);
+                intent.putExtra("movieId", mList.get(i).movieId);
+                popularViewHolder.itemView.getContext().startActivity(intent);
             }
         });
     }

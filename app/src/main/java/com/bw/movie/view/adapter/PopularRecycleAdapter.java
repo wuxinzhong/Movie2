@@ -69,7 +69,9 @@ public class PopularRecycleAdapter extends RecyclerView.Adapter<PopularRecycleAd
         popularViewHolder.pop_last_btn_gp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                popularViewHolder.itemView.getContext().startActivity(new Intent(popularViewHolder.itemView.getContext(), AllGouPiaoActivity.class));
+                Intent intent = new Intent(popularViewHolder.itemView.getContext(), MovieDetailsActivity.class);
+                intent.putExtra("movieId", mList.get(i).movieId);
+                popularViewHolder.itemView.getContext().startActivity(intent);
             }
         });
     }
